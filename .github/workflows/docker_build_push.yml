@@ -24,6 +24,7 @@ jobs:
       push: True
       tags: |
         ${{vars.Docker_Username}}/github-actions-app:${{github.ref_name}}
+        ${{vars.Docker_Username}}/github-actions-app:latest
         ${{vars.Docker_Username}}/github-actions-app:${{github.SHA}}
 
   

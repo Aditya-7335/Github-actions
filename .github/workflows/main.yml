@@ -11,10 +11,17 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [3.12, 3.8, 3.9 , 3.10, 3.11]
+        java-version: [14, 15, 16, 17, 18]
 
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+
+      - name: java setup for {{$matrix.java-version}}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java-version }}
+
 
 
 

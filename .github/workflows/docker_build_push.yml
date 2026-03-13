@@ -1,0 +1,29 @@
+name: Docker build and push
+
+On:
+  push:
+    branches: [main]
+jobs:
+  build-and-push:
+  runs-on: ubuntu-latest
+  steps:
+
+  - name: Code checkout
+    uses: actions/checkout@v4
+
+  - name: Docker login
+    uses: Docker/login-actions@v3
+    with:
+    username: ${{vars.Docker_Username}}
+    password: ${{secrets.Docker_Token}}
+
+  - name: build docker image and push
+    uses: Docker/build-push-actions@v6
+    with:
+      context: .
+      push: True
+      tags: |
+        ${{vars.Docker_Username}}/github-actions-app:${{github.ref_name}}
+        ${{vars.Docker_Username}}/github-actions-app:${{github.SHA}}
+
+  

@@ -4,16 +4,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  Deploy:
-      runs-on: [self-hosted, run]
+  deploy:
+    runs-on: [self-hosted, run]
 
-  env:
-    DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-  
+    env:
+      DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+
     steps:
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Docker Deploy
         run: docker compose up -d --build
-    

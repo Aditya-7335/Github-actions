@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
 
-    runs-on: [seld-hosted, run]
+    runs-on: self-hosted
     
     env:
       DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}

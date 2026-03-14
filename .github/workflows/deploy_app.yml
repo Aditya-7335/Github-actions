@@ -5,8 +5,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, run]
 
+    runs-on: [seld-hosted, run]
+    
     env:
       DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
 

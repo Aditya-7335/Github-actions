@@ -1,88 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Zero To Hero</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e0e0e0;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 640px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .badge {
-            display: inline-block;
-            margin: 1rem 0 2rem;
-            padding: 0.4rem 1.2rem;
-            border: 1px solid #7b2ff7;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            color: #c4b5fd;
-            letter-spacing: 0.05em;
-        }
-        .cards {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            min-width: 150px;
-            flex: 1;
-        }
-        .card span {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #9ca3af;
-            margin-bottom: 0.4rem;
-        }
-        .card strong {
-            font-size: 1.25rem;
-            color: #f9fafb;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditya | DevOps & Python Enthusiast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:#0f172a;color:#e2e8f0}
+    header{padding:40px;text-align:center;background:linear-gradient(135deg,#2563eb,#06b6d4)}
+    header h1{font-size:2.5rem;color:white}
+    header p{opacity:.9;color:white}
+
+    .container{max-width:1100px;margin:auto;padding:40px 20px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+
+    .card{background:#1e293b;border-radius:14px;padding:25px;transition:.3s;border:1px solid rgba(255,255,255,.05)}
+    .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+
+    h2{margin-bottom:20px;color:#38bdf8}
+
+    .workflow{display:flex;flex-wrap:wrap;gap:15px;margin-top:20px}
+
+    .step{flex:1 1 150px;background:#020617;padding:15px;border-radius:10px;border:1px solid rgba(255,255,255,.05);text-align:center}
+
+    footer{text-align:center;padding:30px;background:#020617;margin-top:40px;font-size:.9rem}
+
+    .tag{display:inline-block;padding:5px 10px;background:#334155;border-radius:6px;margin:4px;font-size:.8rem}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>DevOps Zero To Hero</h1>
-        <div class="badge">Josh Batch 10</div>
-        <div class="cards">
-            <div class="card">
-                <span>Framework</span>
-                <strong>Flask 3.1</strong>
-            </div>
-            <div class="card">
-                <span>Runtime</span>
-                <strong>Python 3.14</strong>
-            </div>
-            <div class="card">
-                <span>Deploy</span>
-                <strong>AWS ECS</strong>
-            </div>
-        </div>
+
+<header>
+  <h1>Aditya</h1>
+  <p>Python • Flask • Docker • GitHub Actions • DevOps Learner</p>
+</header>
+
+<div class="container">
+
+  <section>
+    <h2>About Me</h2>
+    <div class="card">
+      <p>
+        I am a technology enthusiast currently exploring modern software development and DevOps workflows. 
+        My focus includes building Python applications, containerizing them with Docker, and automating
+        deployments using GitHub Actions.
+      </p>
     </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Backend Development</h3>
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+      </div>
+
+      <div class="card">
+        <h3>DevOps</h3>
+        <span class="tag">Docker</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">GitHub Actions</span>
+      </div>
+
+      <div class="card">
+        <h3>Tools</h3>
+        <span class="tag">Git</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Automation</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>My DevOps Workflow</h2>
+
+    <div class="workflow">
+      <div class="step">Write Flask App</div>
+      <div class="step">Lint & Test Code</div>
+      <div class="step">Build Docker Image</div>
+      <div class="step">Push to DockerHub</div>
+      <div class="step">Deploy with GitHub Actions</div>
+      <div class="step">Run via Docker Compose</div>
+    </div>
+
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Projects</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Flask CI/CD Pipeline</h3>
+        <p>
+          Automated pipeline that builds a Flask application, pushes a Docker image,
+          and deploys it automatically using GitHub Actions and a self-hosted runner.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Dockerized Web App</h3>
+        <p>
+          A Python web application packaged with Docker and deployed using Docker Compose
+          for simple infrastructure management.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Built with HTML • Modern CSS • DevOps mindset
+</footer>
+
 </body>
 </html>

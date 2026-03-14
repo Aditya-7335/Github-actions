@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  env:
-      DOCKER_USERNAME: ${{ vars.DOCKERHUB_USER }}
-  
   Deploy:
-      runs-on: self-hosted, run
+      runs-on: [self-hosted, run]
 
-  steps:
+  env:
+    DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+  
+    steps:
       - name: checkout code
         uses: actions/checkout@v4
 

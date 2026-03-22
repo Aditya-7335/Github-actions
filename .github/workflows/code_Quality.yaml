@@ -3,7 +3,7 @@
 name: code Quality
 on:
   workflow_dispatch:
-    
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -28,4 +28,4 @@ jobs:
         run: flake8 app.py
 
       - name: Run SAST
-       run: bandit -r app.py
+        run: bandit -r app.py

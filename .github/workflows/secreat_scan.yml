@@ -1,2 +1,19 @@
-name: Screat scan
+# usage of git leaks for scanning secreats in the codebase
 
+name: Secreat scan
+on:
+    workflow_dispatch:
+
+jobs:
+    secreat_scan:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout repository
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            - name: install git leaks
+              uses: gitleaks/gitleaks-action@v3
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

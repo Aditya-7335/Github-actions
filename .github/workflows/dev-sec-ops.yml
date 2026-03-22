@@ -1,17 +1,17 @@
 # This workflow is triggered on push to the main branch and pull requests targeting the main branch.
-name : DevSecops all instructions
+name : DevSecops
 on:
     workflow_dispatch:
 
 jobs:
     code-quality-deploy:
-        use: ./.github/workflows/code-quality-deploy.yml
+        uses: ./.github/workflows/code-quality-deploy.yml
 
     secret-scan:
-        use: ./.github/workflows/secret-scan.yml
+        uses: ./.github/workflows/secret-scan.yml
 
     dependency-scan:
-        use: ./.github/workflows/dependency-scan.yml
+        uses: ./.github/workflows/dependency-scan.yml
 
     Docker-image-scan:
-        use: ./.github/workflows/image-scan.yml
+        uses: ./.github/workflows/image-scan.yml

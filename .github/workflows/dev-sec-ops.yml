@@ -5,13 +5,13 @@ on:
 
 jobs:
     code-quality-deploy:
-        uses: ./.github/workflows/code-quality-deploy.yml
+        uses: ./.github/workflows/code-Quality.yml
 
     secret-scan:
-        uses: ./.github/workflows/secret-scan.yml
+        uses: ./.github/workflows/secret_scan.yml
 
     dependency-scan:
-        uses: ./.github/workflows/dependency-scan.yml
+        uses: ./.github/workflows/dependency_check.yml
 
     Docker-image-scan:
         uses: ./.github/workflows/image-scan.yml

@@ -1,7 +1,7 @@
 name: CI/CD app
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   build:

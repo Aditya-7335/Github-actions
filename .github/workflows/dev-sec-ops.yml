@@ -5,7 +5,7 @@ on:
 
 jobs:
     code-quality-deploy:
-        uses: ./.github/workflows/code-Quality.yml
+        uses: ./.github/workflows/code_Quality.yml
 
     secret-scan:
         uses: ./.github/workflows/secret_scan.yml

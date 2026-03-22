@@ -1,0 +1,31 @@
+name: CI/CD app
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest, self-hosted]
+
+    steps:
+      - name: Create binary file
+        run: echo "compiled binary file" > my-app.bin
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-binary
+          path: my-app.bin
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: application-binary
+
+      - name: Read file
+        run: cat my-app.bin

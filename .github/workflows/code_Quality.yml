@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run lint
+      - name: Run lint (to check for code quality and style issues)
         run: flake8 app.py
 
-      - name: Run SAST
+      - name: Run SAST (to check for python application security vulnerabilities)
         run: bandit -r app.py

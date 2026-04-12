@@ -11,5 +11,5 @@ def hello_world():
 def health_check():
     return "server health is good and is up and running"
 
-app.run(debug=True, host='0.0.0.0', port=80)
 
+app.run(debug=True, host='0.0.0.0', port=80)

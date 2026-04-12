@@ -10,13 +10,11 @@ jobs:
 
     secret-scan:
         uses: ./.github/workflows/secret_scan.yml
-        secrets:
-            inherit: true
+        secrets: inherit
 
     dependency-scan:
         uses: ./.github/workflows/dependency_check.yml
 
     Docker-image-scan:
         uses: ./.github/workflows/image-scan.yml
-        secrets:
-            inherit: true
+        secrets: inherits

@@ -34,5 +34,5 @@ jobs:
 
     Deploy:
         needs: trivy-scan
-        uses: ./.github/workflows/image-scan.yml
+        uses: ./.github/workflows/deploy-to-server.yml
         secrets: inherit

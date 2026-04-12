@@ -22,5 +22,5 @@ jobs:
     #build and push when all CI part is successful.
     build:
         needs: [code-quality-deploy, secret-scan, dependency-scan, Docker-image-scan]
-        uses: ./.github/workflows/docker-build-push.yml
+        uses: ./.github/workflows/docker_build_push.yml
         secrets: inherit

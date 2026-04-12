@@ -1,7 +1,8 @@
 # This workflow is triggered on push to the main branch and pull requests targeting the main branch.
 name : DevSecops
 on:
-    workflow_dispatch:
+    push:
+        branches: [main]
 
 jobs:
     code-quality-deploy:

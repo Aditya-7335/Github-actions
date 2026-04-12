@@ -7,12 +7,33 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: SSH to Pro Server and Deploy
+
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Copy the docker compose file to the server
+              uses: appleboy/scp-action@v0.1.0
+              with:
+                host: ${{ secrets.SERVER_EC2_HOST }}
+                username: ${{ secrets.SERVER_EC2_USER}}
+                key: ${{ secrets.SERVER_EC2_SSH_KEY}}
+                script: |
+                    echo "installing required dependencies and creating necessary directories on the server..."
+                    mkdir -p ~/devops-joosh
+                    sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
+                    sudo usermod -aG docker $USER && newgrp docker
+                source: "docker-compose.yml"
+                target: "~/devops-joosh/docker-compose.yml"
+
+            - name: Run the application on the server
               uses: appleboy/ssh-action@v1
               with:
                 host: ${{ secrets.SERVER_EC2_HOST }}
                 username: ${{ secrets.SERVER_EC2_USER}}
                 key: ${{ secrets.SERVER_EC2_SSH_KEY}}
                 script: |
-                  echo "Starting Deployment...."
-                  mkdir -p devops-joosh
+                  echo "Running the application...."
+                  export DOCKER_USERNAME=${{ vars.DOCKER_USERNAME }}
+                  export DOCKER_TAG=${{github.event.workflow_run.head_sha}}
+                  echo ${{secrets.DOCKER_PASSWORD}} | docker login -u ${{vars.DOCKER_USERNAME}} --password-stdin
+                  cd devops-joosh && docker compose down && docker compose up -d --build --force-recreate --pull always

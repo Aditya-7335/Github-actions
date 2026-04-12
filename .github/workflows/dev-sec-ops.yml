@@ -17,4 +17,4 @@ jobs:
 
     Docker-image-scan:
         uses: ./.github/workflows/image-scan.yml
-        secrets: inherits
+        secrets: inherit

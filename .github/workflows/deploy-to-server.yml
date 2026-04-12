@@ -17,11 +17,11 @@ jobs:
                 host: ${{ secrets.SERVER_EC2_HOST }}
                 username: ${{ secrets.SERVER_EC2_USER}}
                 key: ${{ secrets.SERVER_EC2_SSH_KEY}}
-                script: |
+                run: |
                     echo "installing required dependencies and creating necessary directories on the server..."
                     mkdir -p ~/devops-joosh
-                # sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
-                # sudo usermod -aG docker $USER && newgrp docker
+                    sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
+                    sudo usermod -aG docker $USER && newgrp docker
                 # source: "docker-compose.yml"
                 # target: "~/devops-joosh/docker-compose.yml"
 

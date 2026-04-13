@@ -11,5 +11,3 @@ def hello_world():
 def health_check():
     return "server health is good and is up and running"
 
-
-app.run(port=80)

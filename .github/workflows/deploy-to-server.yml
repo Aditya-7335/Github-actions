@@ -5,8 +5,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout code
+        uses: actions/checkout@v4
 
-      - name: ssh to server
+      - name: ssh to server and install required dependencies
         uses: appleboy/ssh-action@master
         with:
           host: ${{ vars.SERVER_EC2_HOST }}
@@ -14,10 +16,34 @@ jobs:
           key: ${{ secrets.DEPLOY_EC2_SSH_KEY }}
           port: 22
           script: |
-            sudo apt-get update
-            echo "Pulling latest changes from git repository..."
-            mkdir -p ~/Josh_app
-            echo "Directory is created"
+            echo "Creating Directory for application to run"
+            mkdir -p ~/Josh_App
+            echo "Installing Docker and Docker Compose on the server..."
+            sudo apt-get update && sudo apt-get install docker.io -y && sudo apt-get install docker-compose-v2 -y
+            sudo usermod -aG docker $USER && newgrp docker
+            export DOCKER_USERNAME=${{ vars.DOCKER_USERNAME }}
+            export DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}
+            echo ${{secrets.DOCKER_PASSWORD}} | docker login -u ${{ vars.DOCKER_USERNAME }} --password-stdin
+
+
+      - name: scp build file to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ vars.SERVER_EC2_HOST }}
+          username: ${{ vars.SERVER_EC2_USER }}
+          key: ${{ secrets.DEPLOY_EC2_SSH_KEY }}
+          port: 22
+          source: "docker-compose.yml"
+          target: "~/Josh_App"
+
       
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: running the application on the server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SERVER_EC2_HOST }}
+          username: ${{ vars.SERVER_EC2_USER }}
+          key: ${{ secrets.DEPLOY_EC2_SSH_KEY }}
+          port: 22
+          script: |
+                cd ~/Josh_App
+                docker compose up -d --build --force-recreate --pull always

@@ -11,18 +11,17 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: installting  docker compose file to the server
-              uses: appleboy/ssh-action@v0.1.0
+            - name: Copy docker compose file and setup server
+              uses: appleboy/scp-action@v0.1.0
               with:
                 host: ${{ vars.SERVER_EC2_DEPLOYMENT_HOST }}
                 username: ${{ secrets.SERVER_EC2_USER}}
-                key: ${{ secrets.SERVER_EC2_SSH_KEY}}
+                key: ${{ secrets.Deploy_EC2_SSH_KEY}}
                 source: "docker-compose.yml"
                 target: "~/devops-joosh/docker-compose.yml"
                 run: |
                     echo "installing required dependencies and creating necessary directories on the server..."
                     mkdir -p ~/devops-joosh
-                    cd ~/devops-joosh && scp docker-compose.yml ${{ secrets.SERVER_EC2_USER}}@${{ vars.SERVER_EC2_DEPLOYMENT_HOST }}:~/devops-joosh/docker-compose.yml
                     sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
                     sudo usermod -aG docker $USER && newgrp docker
 
@@ -31,7 +30,7 @@ jobs:
               with:
                 host: ${{ vars.SERVER_EC2_DEPLOYMENT_HOST }}
                 username: ${{ secrets.SERVER_EC2_USER}}
-                key: ${{ secrets.SERVER_EC2_SSH_KEY}}
+                key: ${{ secrets.DEPLOY_EC2_SSH_KEY}}
                 script: |
                   echo "Running the application...."
                   echo "installing required dependencies and creating necessary directories on the server..."

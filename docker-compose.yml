@@ -1,6 +1,5 @@
 services:
   web:
-    build: .
     image: adiii7335/github-actions-app:latest
     ports:
       - "80:80"

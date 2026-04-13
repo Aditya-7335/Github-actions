@@ -3,8 +3,7 @@ on:
   workflow_call:
 jobs:
   deploy:
-
-    runs-on: CI, self-hosted, linux
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
